@@ -23,7 +23,7 @@ Component({
 	 */
 	data: {
 		backgroundColor: 'none',
-		focusColor: '#c2c2c2',
+		focusColor: '#ebebeb',
 	},
 
 	observers: {

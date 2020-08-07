@@ -1,10 +1,7 @@
 {
   "pages": [
-    "pages/index/index",
     "pages/aid/aid",
-    "pages/logs/logs",
-    "pages/uiTest/uitest",
-    "pages/common/ui-block/ui-block"
+    "pages/setting/setting"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -14,17 +11,11 @@
   },
   "tabBar": {
     "list": [{
-      "pagePath": "pages/index/index",
-      "text": "首页"
-    }, {
-      "pagePath": "pages/logs/logs",
-      "text": "设置"
-    }, {
       "pagePath": "pages/aid/aid",
       "text": "辅助器"
     }, {
-      "pagePath": "pages/uiTest/uitest",
-      "text": "ui测试"
+      "pagePath": "pages/setting/setting",
+      "text": "设置"
     }]
   },
   "style": "v2",

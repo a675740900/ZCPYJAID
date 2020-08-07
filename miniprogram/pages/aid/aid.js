@@ -35,6 +35,12 @@ Component({
 
 		demoArr: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'], // 点数按钮
 		eqArr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], // 对比数组
+
+		legalArr: [],
+
+		showNum: false, // 列式显示
+
+		isCounting: false
 	},
 
 	/**
@@ -50,6 +56,11 @@ Component({
 	 * 组件的方法列表
 	 */
 	methods: {
+		showNumClick() {
+			this.setData({
+				showNum: !this.data.showNum
+			})
+		},
 		/**
 		 * 设置选中类型的数组
 		 */
@@ -81,6 +92,10 @@ Component({
 			_origArr.forEach(data => {
 				data.checked = false;
 			})
+
+			this.setData({
+				_origArr: _origArr
+			})
 		},
 
 		/**
@@ -100,14 +115,54 @@ Component({
 			});
 		},
 
-		clearOrigArr() {
+		delete() {
 			let origArr = this.data._origArr;
-			origArr.forEach(item => {
-				item.val = '?'
-			});
+			let index = origArr.findIndex(item => item.val == '?');
+			let rules = this.data.rules;
+			if (index == 0) {
+				return;
+			}
+
+			if (index == -1) {
+				index = origArr.length;
+			}
+
+			rules.forEach(rule => {
+				let ruleInfoIndex = rule.infos.findIndex(info => info.index == index - 1);
+				if (ruleInfoIndex > -1) {
+					rule.infos.splice(ruleInfoIndex, 1);
+				}
+			})
+
+			origArr[index - 1].val = '?';
+			origArr[index - 1].checked = false;
 
 			this.setData({
-				_origArr: origArr
+				_origArr: origArr,
+				rules: rules
+			})
+		},
+
+		clearOrigArr() {
+			let origArr = this.data._origArr;
+			let rules = this.data.rules;
+			let legalArr = this.data.legalArr;
+			origArr.forEach(item => {
+				item.val = '?';
+				item.checked = false;
+			});
+
+			rules.forEach(rule => {
+				rule.infos = [];
+			})
+
+			legalArr = [];
+
+			this.setData({
+				_origArr: origArr,
+				rules: rules,
+				legalArr: legalArr,
+				showNum: false
 			})
 		},
 
@@ -126,6 +181,7 @@ Component({
 		 * @param {*} event 
 		 */
 		origValTouch(event) {
+			wx.vibrateShort({}); // 振动
 			if (!this.data.rulesCurFocus) {
 				return;
 			}
@@ -183,6 +239,7 @@ Component({
 		 * 点数按钮点击事件
 		 */
 		demoClick(event) {
+			wx.vibrateShort({});
 			let index = this.data._origArr.findIndex(item => item.val == '?');
 			if (index > -1) {
 				let origArr = this.data._origArr;
@@ -195,6 +252,7 @@ Component({
 		},
 
 		yanjiao() {
+			wx.vibrateShort({});
 			let origArr = this.data._origArr.filter(item => item.val != '?').map(item => this.data.eqArr[this.data.demoArr.indexOf(item.val)]);
 			let mustIndexs = [];
 			let oneSideIndexs = [];
@@ -208,9 +266,62 @@ Component({
 			}
 
 			if (origArr && origArr.length > 0) {
+				this.setData({
+					isCounting: true
+				})
 				let legal = yanjiao.jisuan(origArr, mustIndexs, oneSideIndexs);
 				console.log(legal);
+				this.setLegalArr(legal);
+				this.setData({
+					isCounting: false
+				})
 			}
+		},
+
+		setLegalArr(legalArr) {
+			legalArr.forEach(item => {
+				item.leftStr = item.leftArr.map(val => this.data.demoArr[val - 1]).join(' ');
+				item.rightStr = item.rightArr.map(val => this.data.demoArr[val - 1]).join(' ');
+				item.ignoreStr = item.ignoreArr.map(val => this.data.demoArr[val - 1]).join(' ');
+
+				let isMust = true;
+				let leftSide = true;
+				let rightSide = true;
+				this.data.rules.forEach(rule => {
+					if (rule.type == 'must') {
+						for (let i = 0; i < rule.infos.length; i++) {
+							if (item.ignoreIndexs.includes(rule.infos[i].index)) {
+								isMust = false;
+								return;
+							}
+						}
+
+					} else if (rule.type == 'oneSide') {
+						for (let i = 0; i < rule.infos.length; i++) {
+							if (!item.leftArr.includes(this.data.demoArr.indexOf(rule.infos[i].num) + 1)) {
+								leftSide = false;
+								break;
+							}
+						}
+
+						if (!leftSide) {
+							for (let i = 0; i < rule.infos.length; i++) {
+								if (!item.rightArr.includes(this.data.demoArr.indexOf(rule.infos[i].num) + 1)) {
+									rightSide = false;
+									break;
+								}
+							}
+						}
+					}
+				})
+				if (!isMust || !leftSide && !rightSide) {
+					item.biandan = true;
+				}
+			})
+			this.setData({
+				legalArr: legalArr,
+				showNum: true
+			})
 		}
 	},
 

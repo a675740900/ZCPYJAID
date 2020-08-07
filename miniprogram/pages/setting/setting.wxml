@@ -1,0 +1,4 @@
+<!--pages/setting/setting.wxml-->
+<view class="container">
+	<view style="margin-top:49vh">开发中...</view>
+</view>

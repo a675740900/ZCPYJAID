@@ -4,6 +4,7 @@ let ignoreNum = 0; // 忽略个数
 let legalArr; // 最终合法数组
 let mustIndexs = []; // 必要
 let oneSideIndexs = []; // 必须在一侧的数
+let maxNum = 30;
 
 function jisuan(origArr, mustIndexs, oneSideIndexs) {
 	tempArr = [];
@@ -32,7 +33,7 @@ function zcpyj(arr) {
 
 	let newArr = reSetArr(arr);
 
-	while (ignoreNum <= newArr.length - 2) {
+	while (ignoreNum <= newArr.length - 2 && legalArr.length <= maxNum) {
 		let setLeftLen = 1;
 
 		let copyArr = newArr.concat();
@@ -50,7 +51,7 @@ function zcpyj(arr) {
 				// console.log('------- 忽略下标：' + str + '-------');
 
 				setLeftLen = 1;
-				while (setLeftLen <= copyArr.length - 1) {
+				while (setLeftLen <= copyArr.length - 1 && legalArr.length <= maxNum) {
 					getPLZH(copyArr, setLeftLen);
 					setIgnoreArr(tempArr, map.leftArr);
 					checkSatisfy(arr, tempArr);
@@ -60,7 +61,7 @@ function zcpyj(arr) {
 			}
 		} else {
 			// console.log('------- 没有忽略 -------')
-			while (setLeftLen <= copyArr.length - ignoreNum - 1) {
+			while (setLeftLen <= copyArr.length - ignoreNum - 1 && legalArr.length <= maxNum) {
 				getPLZH(copyArr, setLeftLen);
 				setIgnoreArr(tempArr, []);
 				checkSatisfy(arr, tempArr);
@@ -88,6 +89,9 @@ function setIgnoreArr(arr, ignoreArr) {
 
 function checkSatisfy(origArr, arr) {
 	arr.forEach(map => {
+		if (legalArr.length > maxNum) {
+			return;
+		}
 		let newMap = {
 			leftIndexs: [],
 			rightIndexs: [],

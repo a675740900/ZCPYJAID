@@ -6,13 +6,14 @@
 	align-items: center;
 	justify-content: space-between;
 	box-sizing: border-box;
+	padding: 0 6vw;
 }
 
 .ui-rule {
 	width: 100%;
 	display: flex;
 	justify-content: space-evenly;
-	padding: 0vh 0px 5vh 0px;
+	padding: 0vh 0px 2vh 0px;
 }
 
 .ui-block {
@@ -23,8 +24,9 @@
 	display: flex;
 	flex-wrap: wrap;
 	text-align: center;
-	width: 87%;
+	width: 100%;
 	padding: 2vh 0px;
+	justify-content: center;
 }
 
 .ui-input {
@@ -39,12 +41,18 @@
 	font-size: 20px;
 }
 
+
+.hover-class {
+	background-color: #ebebeb;
+}
+
 .ui-btns {
 	display: flex;
 	flex-wrap: wrap;
 	text-align: center;
-	width: 87%;
+	width: 100%;
 	padding: 2vh 0px;
+	justify-content: center;
 }
 
 .ui-btn {
@@ -57,4 +65,64 @@
 	border-radius: 2px;
 	margin: 3vw;
 	font-size: 20px;
+}
+
+.ui-result {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	transition: height .2s ease;
+	overflow: hidden;
+}
+
+.ui-show {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	text-align: center;
+	padding: 2px;
+}
+
+.ui-show2 {
+	display: flex;
+	flex-direction: column;
+}
+
+.ui-lieshi {
+	display: flex;
+	flex-direction: row;
+}
+
+.half {
+	width: 50%;
+}
+
+.ui-show2>.ui-show:nth-child(odd) {
+	background: #e7e7e7;
+}
+
+.ui-show2>.biandan:nth-child(odd) {
+	color: #c8c8c8;
+}
+
+.ui-show2>.biandan:nth-child(even) {
+	color: gainsboro;
+}
+
+.ui-swap {
+	width: 100%;
+	text-align: center;
+}
+
+.ui-btn-yj:disabled {
+	color: silver;
+}
+
+.ui-btn-yj {
+	width: 15vw;
+	height: 15vw;
+	margin: 3vw;
+	text-align: center;
+	line-height: 14vw;
+	padding: 0;
 }

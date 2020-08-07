@@ -1,20 +1,40 @@
 <view class='box'>
 	<view class='ui-rule'>
-		<ui-block class='ui-block' wx:for="{{rules}}" wx:for-item='rule' title='{{rule.title}}' bindtap='bolckClick' data-rule='{{rule}}' focus='{{rulesCurFocus==rule.type}}' arr='{{rule.infos}}'></ui-block>
+		<ui-block class='ui-block' wx:for="{{rules}}" wx:key="key" wx:for-item='rule' title='{{rule.title}}' bindtap='bolckClick' data-rule='{{rule}}' focus='{{rulesCurFocus==rule.type}}' arr='{{rule.infos}}'></ui-block>
 	</view>
 
 	<view class='row-line'></view>
 
 	<view class='ui-inputs'>
-		<view class='ui-input' style="color: {{item.val=='?'?'none':'#FF0000'}}; background-color: {{item.checked?'#c2c2c2':'none'}}" wx:for="{{_origArr}}" wx:for-item='item' wx:for-index="index" bindtap='origValTouch' data-item='{{item}}'>{{item.val}}</view>
+		<view class='ui-input' hover-class='hover-class' style="color: {{item.val=='?'?'none':'#FF0000'}}; background-color: {{item.checked?'#ebebeb':'none'}}" wx:for="{{_origArr}}" wx:key="key" wx:for-item='item' bindtap='origValTouch' data-item='{{item}}'>{{item.val}}</view>
 	</view>
 
 	<view class='row-line'></view>
+	<view class="ui-swap" hover-class='hover-class' bindtap="showNumClick">{{showNum?'-':'+'}}</view>
+	<view class='row-line'></view>
+
+	<view class='ui-result'>
+		<view class='ui-show'>
+			<view style="width: 65%">列式</view>
+			<view style="width: 35%">剩余的数</view>
+		</view>
+		<view class='ui-show2' style="height:{{showNum?'auto':'0px'}}">
+			<view class="ui-show {{item.biandan?'biandan':''}}" wx:for='{{legalArr}}' wx:key="key" wx:for-item='item'>
+				<view class='ui-lieshi' style="width: 65%">
+					<view style="width: 41%; text-align: right;">{{item.leftStr}}</view>
+					<view style="width: 18%; text-align: center;"> = </view>
+					<view style="width: 41%; text-align: left;">{{item.rightStr}}</view>
+				</view>
+				<view class='half' style="width: 35%">{{item.ignoreStr}}</view>
+			</view>
+		</view>
+	</view>
+	<view class='row-line'></view>
 
 	<view class='ui-btns'>
-		<view class='ui-btn' wx:for='{{demoArr}}' wx:for-item='item' bindtap='demoClick' data-item='{{item}}'>{{item}}</view>
+		<view class='ui-btn' hover-class='hover-class' wx:for='{{demoArr}}' wx:key="key" wx:for-item='item' bindtap='demoClick' data-item='{{item}}'>{{item}}</view>
 		<view class='ui-btn' bindtap='clearOrigArr'>清空</view>
-		<view class='ui-btn'>退格</view>
-		<view class='ui-btn' bindtap="yanjiao">=</view>
+		<view class='ui-btn' bindtap='delete'>退格</view>
+		<button class='ui-btn-yj' style="border: 1px solid rgb(185, 185, 185); width: 15vw; height: 15vw; margin: 3vw; text-align: center; line-height: 14vw; padding: 0;" disabled='{{isCounting}}' bindtap="yanjiao">=</button>
 	</view>
 </view>

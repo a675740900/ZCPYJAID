@@ -18,3 +18,9 @@
 	justify-content: flex-start;
 	height: 22px;
 }
+
+.row-line {
+	height: 1px;
+	width: 100%;
+	background-color: #eee;
+  }

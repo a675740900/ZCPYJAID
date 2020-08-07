@@ -6,3 +6,6 @@
 		<view wx:for="{{test1}}" wx:for-item="t">{{t}}</view>
 	</view>
 </view>
+
+<ui-icon type="field" icon="add" color="black" size="{{25}}"></ui-icon>
+<ui-icon icon="add" color="black" size="{{25}}"></ui-icon>
