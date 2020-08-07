@@ -1,0 +1,6 @@
+{
+	"component": true,
+	"usingComponents": {
+		"ui-block": "../common/ui-block/ui-block"
+	}
+}

@@ -1,0 +1,8 @@
+<!--pages/common/ui-block/ui-block.wxml-->
+<view class='box' style="background-color: {{backgroundColor}}">
+	<view class="ui-title">{{title}}</view>
+	<view class='row-line'></view>
+	<view class="ui-arrs">
+	 	<view wx:for="{{arr}}" wx:for-item="info">{{info.num}}</view>
+	</view>
+</view>

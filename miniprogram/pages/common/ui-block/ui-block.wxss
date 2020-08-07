@@ -1,0 +1,20 @@
+/* pages/common/ui-block/ui-block.wxss */
+.box {
+	border: 1px solid rgb(185, 185, 185);
+	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
+	padding: 6px 12px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 2px;
+}
+
+.ui-title {
+	margin-bottom: 5px;
+}
+
+.ui-arrs {
+	margin-top: 5px;
+	display: flex;
+	justify-content: flex-start;
+	height: 22px;
+}

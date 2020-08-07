@@ -1,12 +1,15 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/aid/aid",
+    "pages/logs/logs",
+    "pages/uiTest/uitest",
+    "pages/common/ui-block/ui-block"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -16,6 +19,12 @@
     }, {
       "pagePath": "pages/logs/logs",
       "text": "设置"
+    }, {
+      "pagePath": "pages/aid/aid",
+      "text": "辅助器"
+    }, {
+      "pagePath": "pages/uiTest/uitest",
+      "text": "ui测试"
     }]
   },
   "style": "v2",

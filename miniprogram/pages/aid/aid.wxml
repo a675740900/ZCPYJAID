@@ -1,0 +1,20 @@
+<view class='box'>
+	<view class='ui-rule'>
+		<ui-block class='ui-block' wx:for="{{rules}}" wx:for-item='rule' title='{{rule.title}}' bindtap='bolckClick' data-rule='{{rule}}' focus='{{rulesCurFocus==rule.type}}' arr='{{rule.infos}}'></ui-block>
+	</view>
+
+	<view class='row-line'></view>
+
+	<view class='ui-inputs'>
+		<view class='ui-input' style="color: {{item.val=='?'?'none':'#FF0000'}}; background-color: {{item.checked?'#c2c2c2':'none'}}" wx:for="{{_origArr}}" wx:for-item='item' wx:for-index="index" bindtap='origValTouch' data-item='{{item}}'>{{item.val}}</view>
+	</view>
+
+	<view class='row-line'></view>
+
+	<view class='ui-btns'>
+		<view class='ui-btn' wx:for='{{demoArr}}' wx:for-item='item' bindtap='demoClick' data-item='{{item}}'>{{item}}</view>
+		<view class='ui-btn' bindtap='clearOrigArr'>清空</view>
+		<view class='ui-btn'>退格</view>
+		<view class='ui-btn' bindtap="yanjiao">=</view>
+	</view>
+</view>
