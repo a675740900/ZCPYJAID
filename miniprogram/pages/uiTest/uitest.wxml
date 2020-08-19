@@ -3,7 +3,7 @@
 		<switch checked="{{indicatorDots}}" bindchange="changeIndicatorDots" />
 	</view>
 	<view class='test' style="height:{{indicatorDots ? '200px' : '0px'}}">
-		<view wx:for="{{test1}}" wx:for-item="t">{{t}}</view>
+		<view wx:for="{{test1}}" wx:key='*this' wx:for-item="t">{{t}}</view>
 	</view>
 </view>
 

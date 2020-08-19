@@ -33,14 +33,15 @@ Component({
 		rulesCurFocus: '', // 当前选中的类型
 		rulesFocusArr: [], // 当前选中数组
 
+		showArr: ['A', '2', '3', 'J', '4', '5', '6', 'Q', '7', '8', '9', 'K', '10'], // 点数按钮
 		demoArr: ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'], // 点数按钮
-		eqArr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13], // 对比数组
-
-		legalArr: [],
+		eqArr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ,12 ,13], // 对比数组
 
 		showNum: false, // 列式显示
 
-		isCounting: false
+		isCounting: false,
+
+		maxLen: 30, // 最大显示列数
 	},
 
 	/**
@@ -251,8 +252,9 @@ Component({
 			}
 		},
 
-		yanjiao() {
+		async yanjiao() {
 			wx.vibrateShort({});
+			await this.setMaxLen();
 			let origArr = this.data._origArr.filter(item => item.val != '?').map(item => this.data.eqArr[this.data.demoArr.indexOf(item.val)]);
 			let mustIndexs = [];
 			let oneSideIndexs = [];
@@ -269,7 +271,7 @@ Component({
 				this.setData({
 					isCounting: true
 				})
-				let legal = yanjiao.jisuan(origArr, mustIndexs, oneSideIndexs);
+				let legal = yanjiao.jisuan(origArr, mustIndexs, oneSideIndexs, this.data.maxLen);
 				console.log(legal);
 				this.setLegalArr(legal);
 				this.setData({
@@ -279,7 +281,9 @@ Component({
 		},
 
 		setLegalArr(legalArr) {
+			let unique = 0;
 			legalArr.forEach(item => {
+				item.unique = `unique_${++unique}`;
 				item.leftStr = item.leftArr.map(val => this.data.demoArr[val - 1]).join(' ');
 				item.rightStr = item.rightArr.map(val => this.data.demoArr[val - 1]).join(' ');
 				item.ignoreStr = item.ignoreArr.map(val => this.data.demoArr[val - 1]).join(' ');
@@ -322,10 +326,30 @@ Component({
 				legalArr: legalArr,
 				showNum: true
 			})
-		}
+		},
+
+		setMaxLen() {
+			let that = this;
+			return new Promise(resolve => {
+				wx.getStorage({
+					key: 'maxLen',
+					success(res) {
+						if (res.data) {
+							that.setData({
+								maxLen: res.data
+							})
+						}
+					},complete() {
+						resolve();
+					}
+
+				})
+			})
+		},
 	},
 
 	ready() {
 		this.initComponent();
+		this.setMaxLen();
 	}
 })

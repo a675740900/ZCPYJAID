@@ -1,4 +1,44 @@
 <!--pages/setting/setting.wxml-->
 <view class="container">
-	<view style="margin-top:49vh">开发中...</view>
+	<view>
+		<view class='title'>
+			<view class="ui-titleFlag">|</view>
+			<view>欢迎 使用 张妈辅助器</view>
+		</view>
+		<view class='row-line'></view>
+		<view class='content'>
+			<view class='content-info'>
+				<view>三国杀十周年游戏ID：</view>
+				<view>高小天</view>
+			</view>
+		</view>
+	</view>
+	<view>
+		<view class='title'>
+			<view class="ui-titleFlag">|</view>
+			<view>说明</view>
+		</view>
+		<view class='row-line'></view>
+		<view class='content'>
+			<view>必要：必须获取的数</view>
+			<view>在一侧：指定化为一组的数</view>
+		</view>
+	</view>
+	<view>
+		<view class='title'>
+			<view class="ui-titleFlag">|</view>
+			<view>配置</view>
+		</view>
+		<view class='row-line'></view>
+		<view class='content'>
+			<view class='ui-row'>
+				<view>最大显示列数</view>
+				<picker-view indicator-style="height: 25px;" style="height:75px;width:50px" value='{{value}}' bindchange='bindChange'>
+					<picker-view-column>
+						<view wx:for='{{maxLenArr}}' wx:key='*this' style="line-height: 25px; text-align: center;">{{item}}</view>
+					</picker-view-column>
+				</picker-view>
+			</view>
+		</view>
+	</view>
 </view>

@@ -37,7 +37,7 @@
 	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
 	border: 1px solid rgb(185, 185, 185);
 	border-radius: 2px;
-	margin: 3vw;
+	margin: 2vw 3vw;
 	font-size: 20px;
 }
 
@@ -63,7 +63,7 @@
 	box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.3);
 	border: 1px solid rgb(185, 185, 185);
 	border-radius: 2px;
-	margin: 3vw;
+	margin: 2vw 3vw;
 	font-size: 20px;
 }
 
@@ -125,4 +125,16 @@
 	text-align: center;
 	line-height: 14vw;
 	padding: 0;
+}
+
+.ui-btn:nth-child(4) {
+	background-color: rgb(255, 100, 100);
+}
+
+.ui-btn:nth-child(8) {
+	background-color: hsl(69, 100%, 64%);
+}
+
+.ui-btn:nth-child(12) {
+	background-color: rgb(114, 89, 255);
 }

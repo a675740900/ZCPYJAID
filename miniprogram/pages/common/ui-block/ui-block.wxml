@@ -3,6 +3,6 @@
 	<view class="ui-title">{{title}}</view>
 	<view class='row-line'></view>
 	<view class="ui-arrs">
-	 	<view style="padding:0 2px" wx:for="{{arr}}" wx:key="key" wx:for-item="info">{{info.num}}</view>
+	 	<view style="padding:0 2px" wx:for="{{arr}}" wx:key="index" wx:for-item="info">{{info.num}}</view>
 	</view>
 </view>

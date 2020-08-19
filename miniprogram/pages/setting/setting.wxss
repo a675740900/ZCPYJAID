@@ -1,6 +1,40 @@
 /* pages/setting/setting.wxss */
 .container {
-	width: 100%;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
+	padding: 0 8vw;
+}
+
+.title {
+	padding: 10px;
+	font-size: larger;
+	color: hsl(9, 100%, 79%);
+	display: flex;
+}
+
+.row-line {
+	height: 1px;
+	width: 100%;
+	background-color: #eee;
+}
+
+.content {
+	padding: 8px 24px;
+}
+
+.ui-titleFlag {
+	margin-right: 8px;
+}
+
+.ui-row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.content-info {
+	display: flex;
+	justify-content: space-between;
 }
